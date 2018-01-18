@@ -7,42 +7,89 @@
     <x>0</x>
     <y>0</y>
     <width>200</width>
-    <height>60</height>
+    <height>50</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>200</width>
-    <height>60</height>
+    <height>50</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>200</width>
-    <height>60</height>
+    <height>50</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget{
-	border-radius: 5px;
-	background-color: rgb(255, 0, 4);
+   <string notr="true">
+
+QLabel#descriptionLabel {
+font: 12pt &quot;Rockwell&quot;;
+color: rgb(0, 0, 0);
+}
+
+QLabel#imageLabel {
+font: 12pt &quot;Narkisim&quot;;
+color: rgb(0, 0, 0);
+  border-radius: 3px;
+	border: 2px solid rgb(203, 155, 33);
 }</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="spacing">
-    <number>0</number>
-   </property>
    <property name="topMargin">
     <number>5</number>
    </property>
-   <property name="rightMargin">
+   <property name="bottomMargin">
     <number>5</number>
    </property>
+   <item>
+    <widget class="DescriptionLabel" name="descriptionLabel">
+     <property name="text">
+      <string>Click</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="textEdit"/>
+   </item>
+   <item>
+    <widget class="ImageStoreLabel" name="imageLabel">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Drag&amp;Drop image</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DescriptionLabel</class>
+   <extends>QLabel</extends>
+   <header>descriptionlabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ImageStoreLabel</class>
+   <extends>QLabel</extends>
+   <header>imagestorelabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

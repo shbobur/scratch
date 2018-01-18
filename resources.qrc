@@ -5,17 +5,17 @@
         <file>images/hand-gesture.png</file>
     </qresource>
     <qresource prefix="/templates">
-	    <file>images/templates/qwer1.jpg</file>
-		<file>images/templates/qwer6.jpg</file>
-		<file>images/templates/qwer7.jpg</file>
-		<file>images/templates/qwer14.jpg</file>
-		<file>images/templates/qwer15.jpg</file>
-		<file>images/templates/qwer24.jpg</file>
-		<file>images/templates/qwer51.jpg</file>
-		<file>images/templates/qwer52.jpg</file>
-		<file>images/templates/qwer63.jpg</file>
-		<file>images/templates/qwer64.jpg</file>
-		<file>images/templates/qwer70.jpg</file>
-		<file>images/templates/qwer73.jpg</file>
+        <file>images/templates/qwer1.jpg</file>
+        <file>images/templates/qwert6.jpeg</file>
+        <file>images/templates/qwert7.jpeg</file>
+        <file>images/templates/qwert14.jpeg</file>
+        <file>images/templates/qwert15.jpeg</file>
+        <file>images/templates/qwert24.jpeg</file>
+        <file>images/templates/qwert51.jpeg</file>
+        <file>images/templates/qwert52.jpeg</file>
+        <file>images/templates/qwert63.jpeg</file>
+        <file>images/templates/qwert64.jpeg</file>
+        <file>images/templates/qwert70.jpeg</file>
+        <file>images/templates/qwert73.jpeg</file>
     </qresource>
 </RCC>

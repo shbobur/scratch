@@ -26,23 +26,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    draglabel.cpp \
-    dragtouchwidget.cpp \
-    dragable.cpp \
     dragableclick.cpp \
-    dragableiconlabel.cpp
+    dragableiconlabel.cpp \
+    descriptionlabel.cpp \
+    imagestorelabel.cpp \
+    dragable.cpp
 
 HEADERS += \
         mainwindow.h \
-    draglabel.h \
-    dragtouchwidget.h \
     dragable.h \
     dragableclick.h \
-    dragableiconlabel.h
+    dragableiconlabel.h \
+    descriptionlabel.h \
+    imagestorelabel.h
 
 FORMS += \
         mainwindow.ui \
-    dragtouchwidget.ui \
     dragableclick.ui
 
 RESOURCES += \

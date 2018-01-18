@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QUrl>
-#include "dragtouchwidget.h"
 #include "dragable.h"
-#include "draglabel.h"
 #include "dragableclick.h"
 
 #include <QMouseEvent>
@@ -25,13 +23,13 @@ MainWindow::MainWindow(QWidget *parent) :
     setAcceptDrops(true);
     ui->pushButton->setVisible(false);
 
-    Dragable *ddw = new DragTouchWidget(this);
-    ddw->move(10, 10);
-    ddw->show();
-    ddw->setAttribute(Qt::WA_DeleteOnClose);
-
     Dragable *dc = new DragableClick(this);
     dc->move(10, 200);
+    dc->show();
+    dc->setAttribute(Qt::WA_DeleteOnClose);
+
+    dc = new DragableClick(this);
+    dc->move(30, 100);
     dc->show();
     dc->setAttribute(Qt::WA_DeleteOnClose);
 
@@ -70,11 +68,7 @@ void MainWindow::dragMoveEvent(QDragMoveEvent *event)
             event->acceptProposedAction();
         }
     } else {
-        Dragable *child = static_cast<Dragable*>(this->childAt(event->pos()));
-        event->setDropAction(Qt::MoveAction);
-        //child->handleDrop(event);
-        event->accept();
-        //event->ignore();
+        event->ignore();
     }
 }
 
@@ -93,11 +87,8 @@ void MainWindow::dropEvent(QDropEvent *event)
         QPoint offset;
         dataStream >> offset;
 
-        Dragable *newIcon = nullptr;
-        if (event->mimeData()->text() == "Click")
-            newIcon = new DragableClick(this);
-        else
-            newIcon = new DragTouchWidget(this);
+        Dragable *newIcon = new DragableClick(this);
+
         //newIcon->setPixmap(pixmap);
         newIcon->move(event->pos() - offset);
         newIcon->show();
@@ -110,36 +101,25 @@ void MainWindow::dropEvent(QDropEvent *event)
             event->acceptProposedAction();
         }
     } else {
-        Dragable *child = static_cast<Dragable*>(this->childAt(event->pos()));
-        event->setDropAction(Qt::CopyAction);
-        //child->handleDrop(event);
-        event->accept();
+        event->ignore();
     }
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    //Dragable *child = static_cast<Dragable*>(this->childAt(event->pos()));
     QWidget *childWid = childAt(event->pos());
     if (!childWid)
         return;
 
-//    qDebug() << childWid->metaObject()->className();
-//    qDebug() << "Dragable: " << childWid->inherits("Dragable");
-
-    if (QString(childWid->metaObject()->className()) == QString("DragableIconLabel"))
+    QString cName = QString(childWid->metaObject()->className());
+    if (cName == QString("DescriptionLabel") || cName == "ImageStoreLabel") {
         childWid = childWid->parentWidget();
-//    qDebug() << childWid->metaObject()->className();
-//    qDebug() << "Dragable: " << childWid->inherits("Dragable");
-    Dragable *child = nullptr;
+        Dragable *obj = new Dragable;
+        if (!childWid->metaObject()->inherits(obj->metaObject()))
+            return;
+    }
 
-    if (QString(childWid->metaObject()->className()) == QString("DragTouchWidget"))
-        child = static_cast<Dragable*>(childWid);
-    else
-        return;
-//    qDebug() << childWid->metaObject()->className();
-//    qDebug() << "Dragable: " << childWid->inherits("Dragable");
-
+    Dragable *child = static_cast<Dragable*>(childWid);
     QPixmap pixmap = child->pixmap();
 
     QByteArray itemData;
@@ -159,8 +139,6 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     drag->setHotSpot(event->pos() - child->pos());
 //! [3]
 
-
-    //if (drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::CopyAction) == Qt::MoveAction) {
     if (drag->exec(Qt::MoveAction) == Qt::MoveAction) {
         child->close();
     } else {
