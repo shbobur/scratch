@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/main">
+        <file>images/bg.png</file>
+        <file>images/play.png</file>
+        <file>images/hand-gesture.png</file>
+    </qresource>
+    <qresource prefix="/templates">
+	    <file>images/templates/qwer1.jpg</file>
+		<file>images/templates/qwer6.jpg</file>
+		<file>images/templates/qwer7.jpg</file>
+		<file>images/templates/qwer14.jpg</file>
+		<file>images/templates/qwer15.jpg</file>
+		<file>images/templates/qwer24.jpg</file>
+		<file>images/templates/qwer51.jpg</file>
+		<file>images/templates/qwer52.jpg</file>
+		<file>images/templates/qwer63.jpg</file>
+		<file>images/templates/qwer64.jpg</file>
+		<file>images/templates/qwer70.jpg</file>
+		<file>images/templates/qwer73.jpg</file>
+    </qresource>
+</RCC>
