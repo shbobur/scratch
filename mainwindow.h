@@ -24,6 +24,8 @@ protected:
     void dropEvent(QDropEvent *event) override;
     void mousePressEvent(QMouseEvent *event);
 
+private slots:
+    void buttonClicked();
 
 private:
     Ui::MainWindow *ui;

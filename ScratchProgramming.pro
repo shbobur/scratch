@@ -26,23 +26,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dragableclick.cpp \
     dragableiconlabel.cpp \
     descriptionlabel.cpp \
     imagestorelabel.cpp \
-    dragable.cpp
+    dragable.cpp \
+    click.cpp \
+    expect.cpp \
+    expandingarea.cpp
 
 HEADERS += \
         mainwindow.h \
     dragable.h \
-    dragableclick.h \
     dragableiconlabel.h \
     descriptionlabel.h \
-    imagestorelabel.h
+    imagestorelabel.h \
+    click.h \
+    expect.h \
+    expandingarea.h
 
 FORMS += \
         mainwindow.ui \
-    dragableclick.ui
+    click.ui \
+    expect.ui \
+    expandingarea.ui
 
 RESOURCES += \
     resources.qrc

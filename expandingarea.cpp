@@ -1,48 +1,60 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QUrl>
+#include "expandingarea.h"
+#include "ui_expandingarea.h"
+
+#include <QPainter>
+#include <QPaintEvent>
+#include <QPainterPath>
+
 #include "dragable.h"
 #include "click.h"
-#include "expandingarea.h"
 
 #include <QMouseEvent>
 #include <QMimeData>
 #include <QDrag>
-#include <QPainter>
 #include <QPixmap>
 #include <QDebug>
 #include <QLabel>
 
-MainWindow::MainWindow(QWidget *parent) :
+ExpandingArea::ExpandingArea(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::ExpandingArea)
 {
     ui->setupUi(this);
-//    view.setFilePath(QUrl::fromLocalFile("D:/dev/QtProjects/ScratchProgramming/scene.qml").toLocalFile());
-//    connect(ui->pushButton, SIGNAL(clicked(bool)), &view, SLOT(show()));
 
-    setAcceptDrops(true);
-   // ui->pushButton->setVisible(false);
-    connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(buttonClicked()));
+    mainLayout = new QVBoxLayout(this);
+    setLayout(mainLayout);
 
-    Dragable *dc = new Click(this);
-    dc->move(10, 200);
-    dc->show();
-    dc->setAttribute(Qt::WA_DeleteOnClose);
-
-    dc = new Click(this);
-    dc->move(30, 100);
-    dc->show();
-    dc->setAttribute(Qt::WA_DeleteOnClose);
-
+    contentHeight = 0;
 }
 
-MainWindow::~MainWindow()
+ExpandingArea::~ExpandingArea()
 {
     delete ui;
 }
 
-void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+void ExpandingArea::addWidget(QWidget *widget)
+{
+    childList.append(widget);
+    mainLayout->addWidget(widget);
+    contentHeight += widget->maximumHeight() + 3;
+    resize(minimumSizeHint());
+    update();
+}
+
+void ExpandingArea::paintEvent(QPaintEvent *event)
+{
+    QPainterPath path;
+    path.moveTo(0, 0);
+    path.lineTo(width()-1, 0);
+    path.lineTo(width()-1, height()-1);
+    path.lineTo(0, height()-1);
+    path.lineTo(0, 0);
+
+    QPainter painter(this);
+    painter.drawPath(path);
+}
+
+void ExpandingArea::dragEnterEvent(QDragEnterEvent *event)
 {
     if (event->mimeData()->hasFormat("application/script-component")) {
         if (event->source() == this) {
@@ -60,7 +72,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
-void MainWindow::dragMoveEvent(QDragMoveEvent *event)
+void ExpandingArea::dragMoveEvent(QDragMoveEvent *event)
 {
     if (event->mimeData()->hasFormat("application/script-component")) {
         if (event->source() == this) {
@@ -74,12 +86,12 @@ void MainWindow::dragMoveEvent(QDragMoveEvent *event)
     }
 }
 
-void MainWindow::dragLeaveEvent(QDragLeaveEvent *event)
+void ExpandingArea::dragLeaveEvent(QDragLeaveEvent *event)
 {
 
 }
 
-void MainWindow::dropEvent(QDropEvent *event)
+void ExpandingArea::dropEvent(QDropEvent *event)
 {
     if (event->mimeData()->hasFormat("application/script-component")) {
         QByteArray itemData = event->mimeData()->data("application/script-component");
@@ -107,7 +119,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     }
 }
 
-void MainWindow::mousePressEvent(QMouseEvent *event)
+void ExpandingArea::mousePressEvent(QMouseEvent *event)
 {
     QWidget *childWid = childAt(event->pos());
     if (!childWid)
@@ -152,12 +164,3 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
       //  child->setPixmap(pixmap);
     }
 }
-
-void MainWindow::buttonClicked()
-{
-    Click *dc = new Click(this);
-    dc->setAttribute(Qt::WA_DeleteOnClose);
-
-    ui->expandingArea->addWidget(dc);
-}
-

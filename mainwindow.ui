@@ -26,8 +26,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>50</y>
+     <x>550</x>
+     <y>190</y>
      <width>261</width>
      <height>131</height>
     </rect>
@@ -39,8 +39,29 @@
     <bool>false</bool>
    </property>
   </widget>
+  <widget class="Expect" name="expandingArea" native="true">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>40</y>
+     <width>281</width>
+     <height>201</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(179, 255, 188);</string>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>Expect</class>
+   <extends>QWidget</extends>
+   <header>expect.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

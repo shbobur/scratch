@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DragableClick</class>
- <widget class="QWidget" name="DragableClick">
+ <class>Click</class>
+ <widget class="QWidget" name="Click">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>200</width>
-    <height>50</height>
+    <height>33</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>200</width>
-    <height>50</height>
+    <height>33</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>200</width>
-    <height>50</height>
+    <width>238</width>
+    <height>33</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -56,9 +56,6 @@ color: rgb(0, 0, 0);
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-   </item>
-   <item>
-    <widget class="QTextEdit" name="textEdit"/>
    </item>
    <item>
     <widget class="ImageStoreLabel" name="imageLabel">

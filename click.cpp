@@ -1,5 +1,5 @@
-#include "dragableclick.h"
-#include "ui_dragableclick.h"
+#include "click.h"
+#include "ui_click.h"
 
 #include <QPaintEvent>
 #include <QPainter>
@@ -9,26 +9,29 @@
 #include <QPoint>
 #include <QPainterPath>
 
-DragableClick::DragableClick(QWidget *parent) :
+Click::Click(QWidget *parent) :
     Dragable(parent),
-    ui(new Ui::DragableClick)
+    ui(new Ui::Click)
 {
     ui->setupUi(this);
+
+//    setAttribute(Qt::WA_NoSystemBackground);
+//    setAttribute(Qt::WA_TranslucentBackground);
+//    setAttribute(Qt::WA_PaintOnScreen);
 }
 
-DragableClick::~DragableClick()
+Click::~Click()
 {
     delete ui;
 }
 
-void DragableClick::paintEvent(QPaintEvent *event)
+void Click::paintEvent(QPaintEvent *event)
 {
-    QStyleOption o;
-    o.initFrom(this);
-    QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
+//    QStyleOption o;
+//    o.initFrom(this);
+//    QPainter p(this);
+//    style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
 
-    int x = 0, y = 0;
     QPainterPath path;
     path.moveTo(0, 0);
     path.lineTo(10, 0);
